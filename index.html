@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia e Sustentabilidade: Soluções tecnológicas para problemas ambientais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f45bda;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .flipbook {
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flipbook .header {
+            background: #35e4e7;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .flipbook .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .flipbook .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .flipbook .content-text {
+            text-align: justify;
+        }
+
+        .flipbook .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .footer button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .footer button:hover:not(:disabled) {
+            background: #0056b3;
+        }
+
+        .footer .page-info {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="flipbook">
+        <div class="header">
+            <h1>Tecnologia e Sustentabilidade:</h1>
+            <h3>Soluções tecnológicas para problemas ambientais</h3>
+        </div>
+        <div class="content" id="content">
+            <p>Bem-vindo ao Meu E-Book!</p>
+        </div>
+        <div class="footer">
+            <button id="prev-btn" disabled><i class="fas fa-arrow-left"></i> Anterior</button>
+            <div class="page-info" id="page-info">Página 1 de 10</div>
+            <button id="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        const pages = [
+            "<img src='./doc/src/img/capa-e-book.png' alt='Capa do Book'>",
+            "<h2>Sumário</h2><ul><br><li>1. Introdução</li><li>2. A Revolução das Energias Renováveis</li><li>3. Tecnologias para Redução e Gestão de Resíduos</li><li>4. Agricultura Sustentáveis e Tecnologia</li><li>5. Mobilidade Urbana Sustentável</li><li> 6. Monitoramento e Preservação Ambiental</li><li>7. Conclusão</li><li>8. Fonte de pesquisa</li></ul>",
+            "<h2>Introdução<h2><br><p>A sustentabilidade é uma das maiores preocupações do século XXI. Com o aumento dos impactos ambientais causados pelas atividades humanas, a busca por soluções inovadoras tornou-se essencial para garantir a preservação do planeta. Neste e-book, exploraremos como a tecnologia pode ser uma aliada poderosa na construção de um futuro mais sustentável. Desde energias renováveis até soluções para a gestão de resíduos, apresentaremos exemplos práticos e inspirações para enfrentar os desafios ambientais.</p>",
+           
+            "<h2>A Revolução das Energias Renováveis</h2><br><p>A transição para fontes de energia limpa é um dos pilares da sustentabilidade. Tecnologias como painéis solares, turbinas eólicas e sistemas de biomassa têm reduzido significativamente a dependência de combustíveis fósseis. Neste capítulo, discutiremos:</p><br>•	Os avanços tecnológicos em painéis solares e a ampliação da energia fotovoltaica.<br>• O impacto das turbinas eólicas offshore.<br>• Inovações em baterias para armazenamento de energia.<br>• Casos de sucesso no uso de energias renováveis ao redor do mundo.</p>",
+            
+            "<h2>Tecnologias para Redução e Gestão de Resíduos</h2><br><p>O acúmulo de resíduos sólidos é um problema crescente. A tecnologia tem sido uma aliada na criação de soluções para minimizar e gerenciar o lixo de maneira eficiente. Este capítulo explora:</p><br><p>•	Plataformas digitais para reciclagem e economia circular.<br>•	Tecnologias de compostagem automatizada.<br>•	Impressão 3D utilizando materiais reciclados.<br>•	Sensores IoT para otimização da coleta de lixo urbano.</p>",
+                        
+            "<h2>Agricultura Sustentável e Tecnologia</h2><br><p>A agricultura é um setor crucial para a sobrevivência humana, mas também é uma fonte significativa de impacto ambiental. Tecnologias emergentes estão transformando a forma como os alimentos são produzidos. Este capítulo aborda:</p><br>•	Agricultura de precisão: drones, sensores e big data<br>•	Hidroponia e aquaponia: produção eficiente com menor consumo de água.<br>•	Biotecnologia para desenvolvimento de culturas mais resistentes.<br>•	Tecnologias para redução do desperdício de alimentos.</p>",
+            
+            "<h2>Mobilidade Urbana Sustentável</h2><br><p>A poluição causada pelo transporte é um dos principais desafios para a sustentabilidade nas cidades. A inovação tecnológica tem possibilitado alternativas mais limpas e eficientes. Discutiremos:</p><br>•	Veículos elétricos e o avanço das estações de recarga.<br>•	Aplicativos para transporte compartilhado e micromobilidade.<br>•	Infraestruturas inteligentes para transporte público.<br>•	Cidades que adotaram soluções de mobilidade verde com sucesso.</p>",
+            
+            "<h2>Monitoramento e Preservação Ambiental</h2><br><p>A tecnologia também desempenha um papel importante na monitorização e proteção de ecossistemas. Neste capítulo, exploraremos:</p><br><p>•	Satélites para monitoramento de desmatamento e mudanças climáticas.<br>•	Sensores para qualidade do ar e da água.<br>•	Inteligência Artificial aplicada à conservação da biodiversidade.<br>•	Projetos que combinam tecnologia e comunidades locais para preservação.</p>",
+
+            "<h2>Conclusão</h2><br><p>A integração entre tecnologia e sustentabilidade não é apenas uma tendência, mas uma necessidade. As inovações tecnológicas permitem resolver problemas ambientais de maneira criativa e eficiente, promovendo um futuro mais equilibrado para as próximas gerações. Que este e-book sirva como inspiração para novas iniciativas que aliem progresso tecnológico à responsabilidade ambiental.</p>",
+
+            "<h2>Agradecimento</h2><br><img src='./doc/src/img/cover.png' width='180' heigth='190' alt='cover'><br></p><p>Agradeço à Caixa, parceira da DIO, por tornar esse bootcamp possível e por investir no desenvolvimento de novos talentos. Essa iniciativa faz toda a diferença na vida de estudantes e profissionais em formação.</p><br><p>________________________________________________</p><br> <h4>Fonte de pesquisa:<br>1. Tecnologia para um Futuro Sustentável: Accenture | Let there be change <a href='https://www.accenture.com/content/dam/accenture/final/accenture-com/document/Accenture-Tecnologia-Sustentavel-BR.pdf?utm_source=chatgpt.com' target='_blank'>accenture</a><br>2. Tecnologias para um futuro sustentável que vão transformar o Brasil<br> 3. Tecnologia e sustentabilidade: lições para um futuro verde </h4></p>",
+        ];
+
+        let currentPage = 0;
+        const content = document.getElementById('content');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageInfo = document.getElementById('page-info');
+
+        function updateContent() {
+            content.innerHTML = pages[currentPage];
+            pageInfo.textContent = `Página ${currentPage + 1} de ${pages.length}`;
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === pages.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                updateContent();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                updateContent();
+            }
+        });
+
+        updateContent();
+    </script>
+</body>
+</html>
