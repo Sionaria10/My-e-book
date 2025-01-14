@@ -3,15 +3,15 @@ Projeto E-Book feito na IDE Visual Studio Code com a linguagem: Html, CSS e Java
 <h1>
     <a href="https://www.dio.me/">
      <img align="center" width="40px" src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png"></a>
-    <span>Projetos FlipBook e-book-online - Bootc. Caixa</span>
+    <span>Projetos E-Book - Bootc. Caixa</span>
 </h1>
 
-Repositório desenvolvido para fins educativos, com a disponibilização de materiais de apoio.
+Repositório desenvolvido para fins educativos.
 
 ![capa-e-book](https://github.com/user-attachments/assets/e0a95729-1cb1-40c5-a559-db243a47a031)
 
 ## Objetivo
-Projeto informativo relatando os desafios nesses dia atuais em lidar com a Tecnologia, IA Generativa e a Responsabilidade Social e Ambiental.
+Projeto informativo relatando os desafios e soluções tecnológicas para problemas ambientais.
 
 ## 🤖 Tecnologias Utilizadas
 ## Front-end
